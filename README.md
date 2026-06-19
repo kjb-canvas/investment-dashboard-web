@@ -90,7 +90,8 @@ npm run lint    # eslint
 - [x] 홈·분석·배당·추이·포트폴리오 데이터 연동 + 차트(Recharts)
 - [x] 자동 스냅샷 크론 (`/api/cron/snapshot` + Vercel Cron)
 - [x] NH 브릿지 (Windows, pynamuh) — `nh-bridge/`
-- [ ] 실제 API 키로 증권사 응답 스키마 검증 (KIS/토스 DTO 는 문서 기반 추정)
+- [x] 증권사 스키마 공식 문서 교차검증 (KIS 공식 문서 · 토스 공식 OpenAPI 스펙 기준)
+- [ ] 실제 키로 E2E 응답 검증 (특히 KIS 페이지네이션, 토스 신청 승인 후)
 - [ ] 배포 (Vercel) + Supabase 마이그레이션 적용
 
 ### 배포
