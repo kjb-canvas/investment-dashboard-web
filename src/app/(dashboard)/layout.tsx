@@ -26,11 +26,11 @@ export default async function DashboardLayout({
     <div className="min-h-screen bg-neutral-950 text-neutral-100">
       <header className="sticky top-0 z-10 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-          <span className="font-bold">투자 모아보기</span>
-          <div className="flex items-center gap-3 text-sm text-neutral-400">
-            <span className="hidden sm:inline">{user.email}</span>
+          <span className="shrink-0 font-bold">투자 모아보기</span>
+          <div className="flex min-w-0 items-center gap-3 text-sm text-neutral-400">
+            <span className="hidden truncate sm:inline">{user.email}</span>
             <form action="/auth/signout" method="post">
-              <button className="rounded-md border border-neutral-700 px-2 py-1 hover:bg-neutral-800">
+              <button className="shrink-0 rounded-md border border-neutral-700 px-2.5 py-1.5 hover:bg-neutral-800">
                 로그아웃
               </button>
             </form>
@@ -41,7 +41,7 @@ export default async function DashboardLayout({
             <Link
               key={t.href}
               href={t.href}
-              className="whitespace-nowrap rounded-md px-3 py-1.5 text-sm text-neutral-300 hover:bg-neutral-800"
+              className="whitespace-nowrap rounded-md px-3 py-2 text-sm text-neutral-300 hover:bg-neutral-800"
             >
               {t.label}
             </Link>
