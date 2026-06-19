@@ -1,0 +1,23 @@
+[project]
+name = "nh-bridge"
+version = "0.1.0"
+description = "NH투자증권(나무증권) 잔고를 웹 대시보드 DB(Supabase)로 밀어넣는 Windows 브릿지"
+requires-python = ">=3.10"
+
+dependencies = [
+    # pynamuh: NH WMCA DLL 의 Python 래퍼. PyPI 에 없으므로 GitHub 에서 설치합니다.
+    #   pip install "git+https://github.com/odumag99/pynamuh.git"
+    # 주의: pynamuh 는 Windows + 32비트 Python 에서만 import 됩니다.
+    #       또한 NH 홈페이지에서 받은 wmca.dll 등을 직접 배치해야 합니다(README 참고).
+    #       Linux 환경(예: 매핑 테스트)에서는 pynamuh 없이도 동작하도록 설계했습니다.
+    "pynamuh @ git+https://github.com/odumag99/pynamuh.git ; sys_platform == 'win32'",
+
+    # HTTP 클라이언트: Supabase PostgREST 호출용. (무거운 supabase SDK 대신 requests 사용)
+    "requests>=2.31",
+
+    # .env 로딩
+    "python-dotenv>=1.0",
+]
+
+[project.scripts]
+nh-bridge = "bridge:main"
