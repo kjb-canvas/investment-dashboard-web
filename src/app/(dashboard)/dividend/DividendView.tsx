@@ -128,15 +128,15 @@ export function DividendView({
         <div className="mb-3 text-sm text-neutral-400">배당 일정</div>
         <div className="divide-y divide-neutral-800 rounded-xl border border-neutral-800 bg-neutral-900">
           {rows.map((r) => (
-            <div key={r.id} className="flex items-center justify-between p-3">
+            <div key={r.id} className="flex items-center justify-between gap-3 p-3">
               <div className="min-w-0">
                 <div className="truncate font-medium">{r.symbol}</div>
-                <div className="text-xs text-neutral-500">
+                <div className="truncate text-xs text-neutral-500">
                   지급 {paymentLabel(r.paymentDate)}
                   {r.isConfirmed ? " · 확정" : " · 예정"}
                 </div>
               </div>
-              <div className="text-right text-sm">
+              <div className="shrink-0 text-right text-sm">
                 {formattedKRW(r.totalAmount)}
               </div>
             </div>

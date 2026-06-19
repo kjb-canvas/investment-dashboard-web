@@ -42,13 +42,13 @@ export function HoldingsList({
 
   return (
     <div>
-      <div className="mb-3 flex items-center justify-between">
-        <div className="flex gap-1">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <div className="flex flex-wrap gap-1">
           {SORTS.map((s) => (
             <button
               key={s.id}
               onClick={() => setSort(s.id)}
-              className={`rounded-md px-2.5 py-1 text-xs ${
+              className={`min-h-9 rounded-md px-2.5 py-1.5 text-xs ${
                 sort === s.id
                   ? "bg-neutral-200 text-neutral-900"
                   : "border border-neutral-700 text-neutral-300 hover:bg-neutral-800"
@@ -60,7 +60,7 @@ export function HoldingsList({
         </div>
         <button
           onClick={() => setValuation(valuation === "market" ? "book" : "market")}
-          className="rounded-md border border-neutral-700 px-2.5 py-1 text-xs text-neutral-300 hover:bg-neutral-800"
+          className="min-h-9 shrink-0 rounded-md border border-neutral-700 px-2.5 py-1.5 text-xs text-neutral-300 hover:bg-neutral-800"
         >
           {valuation === "market" ? "시세" : "평가"}
         </button>
@@ -75,14 +75,14 @@ export function HoldingsList({
           const pl = profitLossKRW(h, usdToKrw);
           const rate = profitLossRate(h);
           return (
-            <div key={h.id} className="flex items-center justify-between p-3">
+            <div key={h.id} className="flex items-center justify-between gap-3 p-3">
               <div className="min-w-0">
                 <div className="truncate font-medium">{h.name}</div>
-                <div className="text-xs text-neutral-500">
+                <div className="truncate text-xs text-neutral-500">
                   {h.symbol} · {h.quantity.toLocaleString("ko-KR")}주
                 </div>
               </div>
-              <div className="text-right">
+              <div className="shrink-0 text-right">
                 <div className="text-sm">{formattedKRW(value)}</div>
                 <div className={`text-xs ${profitColorClass(pl)}`}>
                   {formattedSignedKRW(pl)} ({formattedPercent(rate)})

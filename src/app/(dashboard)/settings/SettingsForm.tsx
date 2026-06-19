@@ -61,9 +61,9 @@ function SourceCard({
 
   return (
     <div className="rounded-xl border border-neutral-800 bg-neutral-900 p-4">
-      <div className="flex items-start justify-between">
-        <div>
-          <div className="flex items-center gap-2">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2">
             <h3 className="font-semibold">{source.name}</h3>
             {isConfigured && (
               <span className="rounded-full bg-emerald-600/20 px-2 py-0.5 text-xs text-emerald-400">
@@ -83,7 +83,7 @@ function SourceCard({
             href={source.issueUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs text-sky-400 underline"
+            className="shrink-0 text-xs text-sky-400 underline"
           >
             키 발급
           </a>
@@ -108,7 +108,7 @@ function SourceCard({
               className="w-full rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-sm outline-none focus:border-neutral-500"
             />
           ))}
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={onSave}
               disabled={pending}

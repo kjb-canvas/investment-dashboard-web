@@ -57,7 +57,7 @@ export function AnalysisView({
           <button
             key={p}
             onClick={() => setPeriod(p)}
-            className={`rounded-full px-3 py-1 text-sm ${
+            className={`min-h-9 rounded-full px-3 py-1.5 text-sm ${
               period === p
                 ? "bg-neutral-200 text-neutral-900"
                 : "border border-neutral-700 text-neutral-300 hover:bg-neutral-800"
@@ -89,12 +89,12 @@ export function AnalysisView({
       <div className="mb-2 text-sm text-neutral-400">종목별 손익</div>
       <div className="divide-y divide-neutral-800 rounded-xl border border-neutral-800 bg-neutral-900">
         {summary.breakdown.map((b) => (
-          <div key={b.id} className="flex items-center justify-between p-3">
+          <div key={b.id} className="flex items-center justify-between gap-3 p-3">
             <div className="min-w-0">
               <div className="truncate font-medium">{b.name}</div>
-              <div className="text-xs text-neutral-500">{b.symbol}</div>
+              <div className="truncate text-xs text-neutral-500">{b.symbol}</div>
             </div>
-            <div className="text-right">
+            <div className="shrink-0 text-right">
               <div className={`text-sm ${profitColorClass(b.profitKRW)}`}>
                 {formattedSignedKRW(b.profitKRW)}
               </div>

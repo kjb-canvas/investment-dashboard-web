@@ -49,7 +49,7 @@ export function PortfolioView({
           <button
             key={d.id}
             onClick={() => setDimension(d.id)}
-            className={`rounded-md px-2.5 py-1 text-xs ${
+            className={`min-h-9 rounded-md px-2.5 py-1.5 text-xs ${
               dimension === d.id
                 ? "bg-neutral-200 text-neutral-900"
                 : "border border-neutral-700 text-neutral-300 hover:bg-neutral-800"
@@ -102,7 +102,7 @@ export function PortfolioView({
                     />
                     <span className="truncate text-sm">{s.label}</span>
                   </div>
-                  <div className="text-right">
+                  <div className="shrink-0 pl-3 text-right">
                     <div className="text-sm">{formattedKRW(s.valueKRW)}</div>
                     <div className="text-xs text-neutral-500">
                       {s.percent.toFixed(1)}%

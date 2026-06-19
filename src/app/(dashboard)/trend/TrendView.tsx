@@ -111,7 +111,7 @@ export function TrendView({ points }: { points: TrendPoint[] }) {
           <button
             key={p}
             onClick={() => setPeriod(p)}
-            className={`rounded-md px-2.5 py-1 text-xs ${
+            className={`min-h-9 rounded-md px-2.5 py-1.5 text-xs ${
               period === p
                 ? "bg-neutral-200 text-neutral-900"
                 : "border border-neutral-700 text-neutral-300 hover:bg-neutral-800"
