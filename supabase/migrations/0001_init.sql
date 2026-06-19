@@ -1,6 +1,10 @@
 -- 투자 모아보기 웹 — 초기 스키마
 -- 모든 테이블은 RLS 로 "본인 행만" 접근하도록 잠근다.
 -- auth.users 는 Supabase Auth 가 관리한다.
+--
+-- 이 스크립트는 재실행해도 안전하다(idempotent):
+--   - 테이블/인덱스: create ... if not exists
+--   - 정책: drop policy if exists → create policy
 
 -- ============================================================
 -- profiles : 사용자 프로필 (auth.users 1:1)
@@ -13,10 +17,13 @@ create table if not exists public.profiles (
 
 alter table public.profiles enable row level security;
 
+drop policy if exists "본인 프로필 조회" on public.profiles;
 create policy "본인 프로필 조회" on public.profiles
   for select using (auth.uid() = id);
+drop policy if exists "본인 프로필 수정" on public.profiles;
 create policy "본인 프로필 수정" on public.profiles
   for update using (auth.uid() = id);
+drop policy if exists "본인 프로필 생성" on public.profiles;
 create policy "본인 프로필 생성" on public.profiles
   for insert with check (auth.uid() = id);
 
@@ -65,12 +72,16 @@ create index if not exists api_credentials_user_idx
 
 alter table public.api_credentials enable row level security;
 
+drop policy if exists "본인 자격증명 조회" on public.api_credentials;
 create policy "본인 자격증명 조회" on public.api_credentials
   for select using (auth.uid() = user_id);
+drop policy if exists "본인 자격증명 삽입" on public.api_credentials;
 create policy "본인 자격증명 삽입" on public.api_credentials
   for insert with check (auth.uid() = user_id);
+drop policy if exists "본인 자격증명 수정" on public.api_credentials;
 create policy "본인 자격증명 수정" on public.api_credentials
   for update using (auth.uid() = user_id);
+drop policy if exists "본인 자격증명 삭제" on public.api_credentials;
 create policy "본인 자격증명 삭제" on public.api_credentials
   for delete using (auth.uid() = user_id);
 
@@ -92,10 +103,13 @@ create index if not exists asset_snapshots_user_date_idx
 
 alter table public.asset_snapshots enable row level security;
 
+drop policy if exists "본인 스냅샷 조회" on public.asset_snapshots;
 create policy "본인 스냅샷 조회" on public.asset_snapshots
   for select using (auth.uid() = user_id);
+drop policy if exists "본인 스냅샷 삽입" on public.asset_snapshots;
 create policy "본인 스냅샷 삽입" on public.asset_snapshots
   for insert with check (auth.uid() = user_id);
+drop policy if exists "본인 스냅샷 수정" on public.asset_snapshots;
 create policy "본인 스냅샷 수정" on public.asset_snapshots
   for update using (auth.uid() = user_id);
 
@@ -124,11 +138,15 @@ create index if not exists holdings_cache_user_idx
 
 alter table public.holdings_cache enable row level security;
 
+drop policy if exists "본인 보유종목 조회" on public.holdings_cache;
 create policy "본인 보유종목 조회" on public.holdings_cache
   for select using (auth.uid() = user_id);
+drop policy if exists "본인 보유종목 삽입" on public.holdings_cache;
 create policy "본인 보유종목 삽입" on public.holdings_cache
   for insert with check (auth.uid() = user_id);
+drop policy if exists "본인 보유종목 수정" on public.holdings_cache;
 create policy "본인 보유종목 수정" on public.holdings_cache
   for update using (auth.uid() = user_id);
+drop policy if exists "본인 보유종목 삭제" on public.holdings_cache;
 create policy "본인 보유종목 삭제" on public.holdings_cache
   for delete using (auth.uid() = user_id);
