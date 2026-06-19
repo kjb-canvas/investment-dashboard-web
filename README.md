@@ -85,8 +85,16 @@ npm run lint    # eslint
 - [x] API 키 암호화(AES-256-GCM) + 테스트
 - [x] Supabase 인증 + 세션 미들웨어 + 로그인/회원가입
 - [x] DB 스키마(RLS) + 설정 화면(키 암호화 저장)
-- [x] 대시보드 5탭 셸
-- [ ] 증권사 API 클라이언트 (업비트/KIS/토스/Finnhub/ECOS) + 서버 프록시
-- [ ] 홈·분석·배당·추이·포트폴리오 데이터 연동 + 차트
-- [ ] 자동 스냅샷 크론
-- [ ] NH 브릿지 (Windows, pynamuh)
+- [x] 증권사 API 클라이언트 (업비트/KIS/토스/Finnhub/ECOS) + 서버 프록시
+- [x] 서버 오케스트레이션 (전 소스 병렬 조회, 부분 실패 허용)
+- [x] 홈·분석·배당·추이·포트폴리오 데이터 연동 + 차트(Recharts)
+- [x] 자동 스냅샷 크론 (`/api/cron/snapshot` + Vercel Cron)
+- [x] NH 브릿지 (Windows, pynamuh) — `nh-bridge/`
+- [ ] 실제 API 키로 증권사 응답 스키마 검증 (KIS/토스 DTO 는 문서 기반 추정)
+- [ ] 배포 (Vercel) + Supabase 마이그레이션 적용
+
+### 배포
+Next.js 앱은 **Vercel** 에 GitHub repo 를 연결해 배포합니다. Vercel 프로젝트 설정에
+위 환경변수를 넣고, Supabase 에서 마이그레이션을 적용한 뒤, Auth 의 Redirect URL
+(`<배포주소>/auth/callback`)을 등록하면 됩니다. `vercel.json` 에 매일 자동 스냅샷
+크론이 설정되어 있습니다.
